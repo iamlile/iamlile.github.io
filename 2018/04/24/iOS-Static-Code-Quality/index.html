@@ -6,19 +6,37 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iamlile.github.io">
-  <title>Lile&#39;s blog</title>
+  <title>iOS静态代码扫描分析 | Lile&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="google-site-verification: googlea578c19bb1ed03d4.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lile&#39;s blog">
-<meta property="og:url" content="http://iamlile.github.io/googlea578c19bb1ed03d4.html">
+  <meta name="description" content="前言 特别鸣谢:Haiyi（独门秘籍）、LV（实践修改Objective-C插件源码）、YONG（处理打包脚本）  本文主要阐述在事业部使用SonarQube构建iOS：Objective-C、Swift静态代码分析，分享遇到的坑，文章内容有限，一些细节不能到位的，请各位脑补下，谢谢。 SonarQube简介旧版Sonar展示维度如下： 新版SonarQube已经改变了关注维度，推出质量模型：">
+<meta name="keywords" content="测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS静态代码扫描分析">
+<meta property="og:url" content="http://iamlile.github.io/2018/04/24/iOS-Static-Code-Quality/index.html">
 <meta property="og:site_name" content="Lile&#39;s blog">
-<meta property="og:description" content="google-site-verification: googlea578c19bb1ed03d4.html">
+<meta property="og:description" content="前言 特别鸣谢:Haiyi（独门秘籍）、LV（实践修改Objective-C插件源码）、YONG（处理打包脚本）  本文主要阐述在事业部使用SonarQube构建iOS：Objective-C、Swift静态代码分析，分享遇到的坑，文章内容有限，一些细节不能到位的，请各位脑补下，谢谢。 SonarQube简介旧版Sonar展示维度如下： 新版SonarQube已经改变了关注维度，推出质量模型：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-04T03:01:37.610Z">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/%E5%9B%BE%E7%89%87%201.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/%E6%96%B0%E7%89%88SonarQube%E8%B4%A8%E9%87%8F%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/SonarQube%E6%9E%B6%E6%9E%84.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/CI.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/%E7%BE%8E%E5%A5%BD%E7%9A%84%E8%AE%A1%E5%88%92.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/%E8%B8%A9%E8%BF%87%E5%9D%91%E7%9A%84%E8%B7%AF%E6%89%8D%E8%B8%8F%E5%AE%9E.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/%E6%8D%85%E4%B8%80%E4%B8%87%E5%88%80%E4%B9%9F%E4%B8%8D%E8%BF%87%E5%88%86.jpeg">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/SonarCFamily.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/object-install.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/ios-%E6%9E%84%E5%BB%BA%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/sonar-swift.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/swift-install.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/swift-result.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/objectswift-22.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/objectswift.png">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/swift-result-2.png">
+<meta property="og:updated_time" content="2018-04-24T07:45:18.147Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lile&#39;s blog">
-<meta name="twitter:description" content="google-site-verification: googlea578c19bb1ed03d4.html">
+<meta name="twitter:title" content="iOS静态代码扫描分析">
+<meta name="twitter:description" content="前言 特别鸣谢:Haiyi（独门秘籍）、LV（实践修改Objective-C插件源码）、YONG（处理打包脚本）  本文主要阐述在事业部使用SonarQube构建iOS：Objective-C、Swift静态代码分析，分享遇到的坑，文章内容有限，一些细节不能到位的，请各位脑补下，谢谢。 SonarQube简介旧版Sonar展示维度如下： 新版SonarQube已经改变了关注维度，推出质量模型：">
+<meta name="twitter:image" content="http://oxniu73od.bkt.clouddn.com/%E5%9B%BE%E7%89%87%201.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -156,12 +174,143 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-iOS-Static-Code-Quality" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS静态代码扫描分析
+    </h1>
+  
+
+        
+        <a href="/2018/04/24/iOS-Static-Code-Quality/" class="archive-article-date">
+  	<time datetime="2018-04-24T11:26:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        google-site-verification: googlea578c19bb1ed03d4.html
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>特别鸣谢:Haiyi（独门秘籍）、LV（实践修改Objective-C插件源码）、YONG（处理打包脚本）</p>
+</blockquote>
+<p>本文主要阐述在事业部使用SonarQube构建iOS：Objective-C、Swift静态代码分析，分享遇到的坑，文章内容有限，一些细节不能到位的，请各位脑补下，谢谢。</p>
+<h2 id="SonarQube简介"><a href="#SonarQube简介" class="headerlink" title="SonarQube简介"></a>SonarQube简介</h2><p>旧版Sonar展示维度如下：<br><img src="http://oxniu73od.bkt.clouddn.com/%E5%9B%BE%E7%89%87%201.png" alt=""></p>
+<p>新版SonarQube已经改变了关注维度，推出质量模型：</p>
+<ul>
+<li>Bugs：是出现了明显错误或是高度近似期望之外行为的代码。</li>
+<li>漏洞：是指代码中可能出现被黑客利用的潜在风险点。</li>
+<li>坏味道：代码异味会困扰代码的维护者并降低他们的开发效率。主要的衡量标准是修复它们所需的时间。</li>
+</ul>
+<p><img src="http://oxniu73od.bkt.clouddn.com/%E6%96%B0%E7%89%88SonarQube%E8%B4%A8%E9%87%8F%E6%A8%A1%E5%9E%8B.png" alt=""></p>
+<p>建议根据团队需要更新到新版本：至少5.6+以上。</p>
+<h2 id="SonarQube架构"><a href="#SonarQube架构" class="headerlink" title="SonarQube架构"></a>SonarQube架构</h2><h5 id="SonarQube平台的组成："><a href="#SonarQube平台的组成：" class="headerlink" title="SonarQube平台的组成："></a>SonarQube平台的组成：</h5><ul>
+<li>数据库：存放SoanrQube的配置数据，代码质量的快照数据</li>
+<li>Web服务：用于查看SonarQube配置数据，代码质量的快照数据</li>
+<li>分析器：对项目代码进行分析，生成质量结果数据并存于数据库中</li>
+<li>插件：各种语言支持的插件</li>
+</ul>
+<p><img src="http://oxniu73od.bkt.clouddn.com/SonarQube%E6%9E%B6%E6%9E%84.png" alt=""></p>
+<h5 id="不要忽略了CI"><a href="#不要忽略了CI" class="headerlink" title="不要忽略了CI"></a>不要忽略了CI</h5><p>虽然SonarQube具备分析器，可以对多种编程语言进行构建分析，但是依然建议使用CI工具，例如Jenkins来管理日常构建，让SonarQube仅仅展示最终数据即可。<br><img src="http://oxniu73od.bkt.clouddn.com/CI.png" alt=""></p>
+<h2 id="iOS静态代码分析"><a href="#iOS静态代码分析" class="headerlink" title="iOS静态代码分析"></a>iOS静态代码分析</h2><p>目前iOS核心开发语言：Objective-C，也有不少项目采用了Swift语言，逐步过渡，因此项目的组成有两种模式：</p>
+<ul>
+<li>单一语言使用：Objective-C、Swift</li>
+<li>混合语言使用：Objective-C+Swift</li>
+</ul>
+<p>下面通过实战分析两种模式的构建。</p>
+<h5 id="iOS静态代码分析的计划"><a href="#iOS静态代码分析的计划" class="headerlink" title="iOS静态代码分析的计划"></a>iOS静态代码分析的计划</h5><p>Objective-C原以为就跟Java构建一样，如此简单，<br><img src="http://oxniu73od.bkt.clouddn.com/%E7%BE%8E%E5%A5%BD%E7%9A%84%E8%AE%A1%E5%88%92.png" alt=""></p>
+<p>实际遇到的坑是很大的，而且很受伤，</p>
+<p><img src="http://oxniu73od.bkt.clouddn.com/%E8%B8%A9%E8%BF%87%E5%9D%91%E7%9A%84%E8%B7%AF%E6%89%8D%E8%B8%8F%E5%AE%9E.png" alt=""><br>                                踩过坑的路才踏实</p>
+<p><img src="http://oxniu73od.bkt.clouddn.com/%E6%8D%85%E4%B8%80%E4%B8%87%E5%88%80%E4%B9%9F%E4%B8%8D%E8%BF%87%E5%88%86.jpeg" alt=""><br>                                捅一万刀也不过分</p>
+<h3 id="iOS静态代码分析：Objective-C实战"><a href="#iOS静态代码分析：Objective-C实战" class="headerlink" title="iOS静态代码分析：Objective-C实战"></a>iOS静态代码分析：Objective-C实战</h3><p>工欲善其事必先利其器，工具如下：</p>
+<ul>
+<li>环境工具：XCode 8.2+、Xcpretty 0.2.8、OCLint 0.12、xctool、gcovr</li>
+<li>构建静态分析插件</li>
+<li>SonarCFamily：</li>
+</ul>
+<p><img src="http://oxniu73od.bkt.clouddn.com/SonarCFamily.png" alt=""></p>
+<p>官方插件太贵了，找开源吧</p>
+<ul>
+<li>开源SonarQube Plugin for Objective C（<a href="https://github.com/octo-technology/sonar-objective-c" target="_blank" rel="noopener">传送门</a>）<br>  插件安装参考网上教程，下载jar拷贝到SonarQube项目目录下：extensions/plugins</li>
+</ul>
+<p><img src="http://oxniu73od.bkt.clouddn.com/object-install.png" alt=""><br>安装成功的示例</p>
+<h5 id="构建脚本"><a href="#构建脚本" class="headerlink" title="构建脚本"></a>构建脚本</h5><ul>
+<li>run-sonar.sh<br>  在Jenkins的Execute shell配置脚本如下，也可以按照项目要求重名更好格式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">cd $WORKSPACE</span><br><span class="line">xcodebuild -workspace xxx.xcworkspace -scheme xxx clean build | tee xcodebuild.log | xcpretty --report json-compilation-database</span><br><span class="line"></span><br><span class="line">mv build/reports/compilation_db.json compile_commands.json</span><br><span class="line">oclint-json-compilation-database -exclude Pods -- -report-type pmd -o oclint.xml -max-priority-1 99999 -max-priority-2 99999 -max-priority-3 99999 -rc LONG_LINE=140 -rc LONG_METHOD=80 -rc NCSS_METHOD=50 -rc SHORT_VARIABLE_NAME=1 -rc CYCLOMATIC_COMPLEXITY=13 -rc MINIMUM_CASES_IN_SWITCH=2 -rc NPATH_COMPLEXITY=1500</span><br><span class="line"></span><br><span class="line">rm -rf sonar-reports</span><br><span class="line">mkdir sonar-reports</span><br><span class="line"></span><br><span class="line">cat oclint.xml  | sed "s#Switch Statements Should Have Default Rule#switch statements should have default#g" \</span><br><span class="line">| sed "s#missing hash method#must override hash with isEqual#g" \</span><br><span class="line">| sed "s#prefer early exits and continue#use early exits and continue#g" \</span><br><span class="line">| sed "s#use boxed expression#replace with boxed expression#g" \</span><br><span class="line">| sed "s#use container literal#replace with container literal#g" \</span><br><span class="line">| sed "s#use number literal#replace with number literal#g" \</span><br><span class="line">| sed "s#use object subscripting#replace with object subscripting#g" \</span><br><span class="line">| sed "s#missing default in switch statements#switch statements should have default#g" \</span><br><span class="line">| sed "s#unnecessary default statement in covered switch statement#switch statements don't need default when fully covered#g" \</span><br><span class="line">| sed "s#covered switch statements dont need default#switch statements don't need default when fully covered#g" &gt; sonar-reports/oclint.xml</span><br><span class="line">rm -f sonar-project.properties </span><br><span class="line"></span><br><span class="line">cat &gt; sonar-project.properties &lt;&lt;- EOF </span><br><span class="line">sonar.projectKey=xxx-iOS</span><br><span class="line">sonar.projectName=xxx-iOS </span><br><span class="line">sonar.projectVersion=x.x.x</span><br><span class="line">sonar.language=objectivec </span><br><span class="line">sonar.sources=sources </span><br><span class="line">sonar.sourceEncoding=UTF-8 </span><br><span class="line">sonar.objectivec.oclint.reportPath=sonar-reports/oclint.xml </span><br><span class="line">EOF </span><br><span class="line"></span><br><span class="line">/bin/sh sonar-scanner -X</span><br></pre></td></tr></table></figure>
+<ul>
+<li>构建结果</li>
+</ul>
+<p><img src="http://oxniu73od.bkt.clouddn.com/ios-%E6%9E%84%E5%BB%BA%E7%BB%93%E6%9E%9C.png" alt=""></p>
+<blockquote>
+<p>独门绝技介绍（感谢事业部：haiyi大神倾亲奉献）</p>
+<p>构建错误errors generated</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">3 errors generated.</span><br><span class="line">20 errors generated.</span><br><span class="line">20 errors generated.</span><br><span class="line">20 errors generated.</span><br><span class="line">8 errors generated.</span><br><span class="line">19 errors generated.</span><br><span class="line">3 errors generated.</span><br><span class="line">63 errors generated.</span><br></pre></td></tr></table></figure>
+<p>检查OCLint，升级到0.12版本，与XCode8.2+配合</p>
+<blockquote>
+<p>构建错误does not exist</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">The rule 'OCLint:use number literal' does not exist.</span><br><span class="line">The rule 'OCLint:use object subscripting' does not exist.</span><br><span class="line">The rule 'OCLint:ill-placed default label in switch statement' does not exist.</span><br><span class="line">The rule 'OCLint:Switch Statements Misplaced Default Label' does not exist.</span><br></pre></td></tr></table></figure>
+<p>主要原因是sonar-objective-c-plugin-0.5.0-SNAPSHOT.jar中未包含此规则，可以通过修改源码添加规则解决（网上有一堆教程），比较繁琐的是，不同项目遇到不同错误，需要添加多次，则多次打包jar，再导入SonarQube，开销大，haiyi大大给的秘籍是：用sed替换构建的oclint.xml文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed "s#missing hash method#must override hash with isEqual#g"</span><br></pre></td></tr></table></figure>
+<p>将缺失规则：missing hash method，替换为：must override hash with isEqual，每次遇到有缺失的新规则，脚本替换即可，至于怎么准确匹配，去看看质量配置的具体含义再替换。</p>
+<h5 id="Objective-C实战总结"><a href="#Objective-C实战总结" class="headerlink" title="Objective-C实战总结"></a>Objective-C实战总结</h5><ul>
+<li>安装构建工具所需版本号</li>
+<li>xcodebuild构建项目生成compile_commands.json</li>
+<li>oclint-json-compilation-database构建compile_commands.json生成oclint.xml</li>
+<li>sed替换oclint.xml缺失规则</li>
+<li>sonar-project.properties配置oclint.xml文件路径</li>
+<li>/bin/sh sonar-scanner -X 增加-X输出debug日志跟踪</li>
+</ul>
+<h3 id="iOS静态代码分析：Swift实战"><a href="#iOS静态代码分析：Swift实战" class="headerlink" title="iOS静态代码分析：Swift实战"></a>iOS静态代码分析：Swift实战</h3><p>工欲善其事必先利其器，工具如下：</p>
+<h5 id="环境工具"><a href="#环境工具" class="headerlink" title="环境工具"></a>环境工具</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install Swiftlint</span><br><span class="line">gem install slather</span><br><span class="line">sudo pip install lizard</span><br></pre></td></tr></table></figure>
+<p>构建静态分析插件</p>
+<h5 id="SonarSwifty："><a href="#SonarSwifty：" class="headerlink" title="SonarSwifty："></a>SonarSwifty：</h5><p><img src="http://oxniu73od.bkt.clouddn.com/sonar-swift.png" alt=""></p>
+<p>官方插件太贵了，找开源吧</p>
+<blockquote>
+<p>开源sonar-swift（<a href="https://github.com/octo-technology/sonar-objective-c" target="_blank" rel="noopener">传送门</a>）</p>
+</blockquote>
+<p>插件安装参考网上教程（<a href="https://github.com/Backelite/sonar-swift/releases/download/0.3.4/backelite-sonar-swift-plugin-0.3.4.jar" target="_blank" rel="noopener">backelite-sonar-swift-plugin-0.3.4.jar</a>  SonarQube5.4/5/6/6/3测试通过），下载jar拷贝到SonarQube项目目录下：extensions/plugins</p>
+<p><img src="http://oxniu73od.bkt.clouddn.com/swift-install.png" alt=""><br>安装成功的示例</p>
+<h5 id="构建脚本-1"><a href="#构建脚本-1" class="headerlink" title="构建脚本"></a>构建脚本</h5><ul>
+<li>run-sonar.sh<br>在Jenkins的Execute shell配置脚本如下，也可以按照项目要求重名更好格式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">cd $WORKSPACE</span><br><span class="line"></span><br><span class="line">rm -rf kuai-swiftlint.txt</span><br><span class="line">swiftlint lint --path Duobao &gt; xxx-swiftlint.txt</span><br><span class="line"></span><br><span class="line">rm -rf sonar-project.properties</span><br><span class="line"></span><br><span class="line">cat &gt; sonar-project.properties &lt;&lt;- EOF</span><br><span class="line">sonar.projectKey=xxx-iOS-swift</span><br><span class="line">sonar.projectName=xxx-iOS-swift</span><br><span class="line">sonar.projectVersion=x.x.x</span><br><span class="line">sonar.language=swift</span><br><span class="line">sonar.projectDescription=xxx with Swift</span><br><span class="line">sonar.sources=sources</span><br><span class="line">sonar.swift.workspace=xxx.xcworkspace</span><br><span class="line">sonar.swift.appScheme=xxx</span><br><span class="line">sonar.sourceEncoding=UTF-8</span><br><span class="line">sonar.swift.swiftlint.report=xxx-swiftlint.txt</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">/bin/sh sonar-scanner -X</span><br></pre></td></tr></table></figure>
+<h5 id="构建结果"><a href="#构建结果" class="headerlink" title="构建结果"></a>构建结果</h5><p><img src="http://oxniu73od.bkt.clouddn.com/swift-result.png" alt=""></p>
+<ul>
+<li>注意事项</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The structure of the plugin is based on the sonar-objective-c plugin.</span><br><span class="line">In SonarQube under Quality Profiles the used Linter can be specified by  selecting either the SwiftLint Profile or the Tailor Profile as Default  profile for Swift Projects:</span><br></pre></td></tr></table></figure>
+<p><img src="http://oxniu73od.bkt.clouddn.com/objectswift-22.png" alt=""><br>如果不设置，关联规则有问题</p>
+<p>目前暂无遇到缺失规则问题</p>
+<h5 id="Swift实战总结"><a href="#Swift实战总结" class="headerlink" title="Swift实战总结"></a>Swift实战总结</h5><ul>
+<li>安装构建工具所需版本号</li>
+<li>swiftlint生成xxx-swiftlint.txt</li>
+<li>sonar-project.properties配置xxx-swiftlint.txt文件路径</li>
+<li>/bin/sh sonar-scanner -X 增加-X输出debug</li>
+</ul>
+<h3 id="iOS静态代码分析：Objective-C-Swift实战"><a href="#iOS静态代码分析：Objective-C-Swift实战" class="headerlink" title="iOS静态代码分析：Objective-C+Swift实战"></a>iOS静态代码分析：Objective-C+Swift实战</h3><h5 id="这里不详细介绍实战过程，直接说总结"><a href="#这里不详细介绍实战过程，直接说总结" class="headerlink" title="这里不详细介绍实战过程，直接说总结"></a>这里不详细介绍实战过程，直接说总结</h5><ul>
+<li>Objective-C+Swift：分开构建，脚本如下，当做两个项目配置如上文所示</li>
+<li>Objective-C+Swift：一起构建，本质上他们两个的插件是不同的，但是可以利用sonar模块的概念来构建</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objectivec_swift目录结构</span><br><span class="line">--objectivec:完整项目文件</span><br><span class="line">--swift：完整项目文件</span><br></pre></td></tr></table></figure>
+<h5 id="脚本如下"><a href="#脚本如下" class="headerlink" title="脚本如下"></a>脚本如下</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sonar.projectKey=objectivec_swift</span><br><span class="line">sonar.projectName=objectivec_swift</span><br><span class="line">sonar.projectVersion=1.9.0</span><br><span class="line">sonar.sourceEncoding=UTF-8</span><br></pre></td></tr></table></figure>
+<h5 id="分模块"><a href="#分模块" class="headerlink" title="分模块"></a>分模块</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sonar.modules=objective,swift</span><br></pre></td></tr></table></figure>
+<h5 id="构建objectivec"><a href="#构建objectivec" class="headerlink" title="构建objectivec"></a>构建objectivec</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">objective.sonar.projectName=objectivec</span><br><span class="line">objective.sonar.language=objectivec</span><br><span class="line">objective.sonar.projectBaseDir=objectivec</span><br><span class="line">objective.sonar.sources=sources</span><br><span class="line">objective.sonar.oclint.reportPath=sonar-reports/oclint.xml</span><br></pre></td></tr></table></figure>
+<h5 id="构建swift"><a href="#构建swift" class="headerlink" title="构建swift"></a>构建swift</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">swift.sonar.projectName=swift</span><br><span class="line">swift.sonar.language=swift</span><br><span class="line">swift.sonar.sources=sources</span><br><span class="line">swift.sonar.projectBaseDir=swift</span><br><span class="line">swift.sonar.swift.workspace=swift/xxx.xcworkspace</span><br><span class="line">swift.sonar.swift.appScheme=Duobao</span><br><span class="line">swift.sonar.sourceEncoding=UTF-8</span><br><span class="line">swift.sonar.swift.swiftlint.report=swift/xxx-swiftlint.txt</span><br></pre></td></tr></table></figure>
+<h5 id="构建结果-1"><a href="#构建结果-1" class="headerlink" title="构建结果"></a>构建结果</h5><p><img src="http://oxniu73od.bkt.clouddn.com/objectswift.png" alt=""><br><img src="http://oxniu73od.bkt.clouddn.com/swift-result-2.png" alt=""></p>
+<p>没有看到扫描规则问题展示，估计是配置文件或者构建文件路径有问题，暂且告一段落吧，有折腾出来的小伙伴喊一下，谢谢哟，^_^</p>
+<p>最后附上github地址，随意取：</p>
+<ul>
+<li><a href="https://github.com/iamlile/sonar_objectivec_swift" target="_blank" rel="noopener">github-demo-conf</a></li>
+<li><a href="https://github.com/octo-technology/sonar-objective-c" target="_blank" rel="noopener">SonarQube Plugin for Objective C</a></li>
+<li><a href="https://github.com/Backelite/sonar-swift" target="_blank" rel="noopener">SonarQube Swift</a></li>
+</ul>
+
       
 
       
@@ -200,7 +349,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">测试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/测试//" class="article-tag-list-link color3">测试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -211,6 +382,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/12/Summary-of-exploratory-test-training/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">探索式测试培训总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -232,7 +413,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SonarQube简介"><span class="toc-number">2.</span> <span class="toc-text">SonarQube简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SonarQube架构"><span class="toc-number">3.</span> <span class="toc-text">SonarQube架构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SonarQube平台的组成："><span class="toc-number">3.0.0.1.</span> <span class="toc-text">SonarQube平台的组成：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#不要忽略了CI"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">不要忽略了CI</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS静态代码分析"><span class="toc-number">4.</span> <span class="toc-text">iOS静态代码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#iOS静态代码分析的计划"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">iOS静态代码分析的计划</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS静态代码分析：Objective-C实战"><span class="toc-number">4.1.</span> <span class="toc-text">iOS静态代码分析：Objective-C实战</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#构建脚本"><span class="toc-number">4.1.0.1.</span> <span class="toc-text">构建脚本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Objective-C实战总结"><span class="toc-number">4.1.0.2.</span> <span class="toc-text">Objective-C实战总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS静态代码分析：Swift实战"><span class="toc-number">4.2.</span> <span class="toc-text">iOS静态代码分析：Swift实战</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#环境工具"><span class="toc-number">4.2.0.1.</span> <span class="toc-text">环境工具</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SonarSwifty："><span class="toc-number">4.2.0.2.</span> <span class="toc-text">SonarSwifty：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#构建脚本-1"><span class="toc-number">4.2.0.3.</span> <span class="toc-text">构建脚本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#构建结果"><span class="toc-number">4.2.0.4.</span> <span class="toc-text">构建结果</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Swift实战总结"><span class="toc-number">4.2.0.5.</span> <span class="toc-text">Swift实战总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS静态代码分析：Objective-C-Swift实战"><span class="toc-number">4.3.</span> <span class="toc-text">iOS静态代码分析：Objective-C+Swift实战</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#这里不详细介绍实战过程，直接说总结"><span class="toc-number">4.3.0.1.</span> <span class="toc-text">这里不详细介绍实战过程，直接说总结</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#脚本如下"><span class="toc-number">4.3.0.2.</span> <span class="toc-text">脚本如下</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#分模块"><span class="toc-number">4.3.0.3.</span> <span class="toc-text">分模块</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#构建objectivec"><span class="toc-number">4.3.0.4.</span> <span class="toc-text">构建objectivec</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#构建swift"><span class="toc-number">4.3.0.5.</span> <span class="toc-text">构建swift</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#构建结果-1"><span class="toc-number">4.3.0.6.</span> <span class="toc-text">构建结果</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -274,7 +455,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
