@@ -154,6 +154,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-book" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/11/book/">技术书籍推荐</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/11/book/" class="archive-article-date">
+  	<time datetime="2018-02-11T00:44:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前小伙伴问我有啥书籍推荐，回家看了下，大致整理如下（v1.0版本）</p>
+        
+          <a class="article-more-a" href="/2018/02/11/book/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">管理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/11/book/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-companyneedyourskill" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -563,103 +650,9 @@
 
 
   
-    <article id="post-apm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/06/apm/">解锁APM(Pinpoint)姿势：入门与实战</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/06/apm/" class="archive-article-date">
-  	<time datetime="2017-10-06T07:42:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="篇幅一：APM基础篇"><a href="#篇幅一：APM基础篇" class="headerlink" title="篇幅一：APM基础篇"></a>篇幅一：APM基础篇</h1><h2 id="1、什么是APM"><a href="#1、什么是APM" class="headerlink" title="1、什么是APM?"></a>1、什么是APM?</h2><p><strong>APM，全称：Application Performance Management</strong> ，目前市面的系统基本都是参考Google的Dapper（大规模分布式系统的跟踪系统）来做的，翻译传送门<a href="http://bigbully.github.io/Dapper-translation/" target="_blank" rel="noopener">《google的Dapper 中文翻译》</a></p>
-<p><strong>思考下：不遵守该理论的是伪APM，耍流氓吗？</strong> </p>
-<p><strong>APM的核心思想是什么？</strong> 在应用服务各节点相互调用的时候，从中记录并传递一个应用级别的标记，这个标记可以用来关联各个服务节点之间的关系。比如两个应用服务节点之间使用 HTTP 作为传输协议的话，那么这些标记就会被加入到 HTTP 头中。可见如何传递这些标记是与应用服务节点之间使用的通讯协议有关的，常用的协议就相对容易加入这些内容，一些按需定制的可能就相对困难些，这一点也直接决定了实现分布式追踪系统的难度。</p>
-<h2 id="2、为什么要用APM"><a href="#2、为什么要用APM" class="headerlink" title="2、为什么要用APM?"></a>2、为什么要用APM?</h2><p>有业务痛点，才要寻求解决方案，个人认为，APM需要优先解决测试环境下两个场景问题，基于测试先行的原则考虑：<br><img src="http://oxniu73od.bkt.clouddn.com/why-1.png" alt=""><br>
-        
-          <a class="article-more-a" href="/2017/10/06/apm/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能监控</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">APM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/测试//" class="article-tag-list-link color3">测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/06/apm/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -754,6 +747,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">旅游</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">管理</a>
               </li>
              
@@ -766,11 +763,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
               </li>
             
             <div class="clearfix"></div>
