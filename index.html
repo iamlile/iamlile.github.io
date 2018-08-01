@@ -154,6 +154,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-back-black-pot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/01/back-black-pot/">测试背黑锅</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/01/back-black-pot/" class="archive-article-date">
+  	<time datetime="2018-08-01T12:47:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="测试背黑锅"><a href="#测试背黑锅" class="headerlink" title="测试背黑锅"></a>测试背黑锅</h3><p><img src="http://oxniu73od.bkt.clouddn.com/%E8%83%8C%E9%BB%91%E9%94%85.jpg" alt=""><br>朋友讲了个案例</p>
+<blockquote>
+<p>组内有一位成员发现线上缺陷非常高兴，指着其他组员说，你们怎么测试的，这么简单的问题都漏了。（声明这位组员不是leader，即便是也有问题，原则上来说用“你们”已经划清了界线。）然后让这位组员参与排查问题，得到的答复是：我只参与提问，你们去查。</p>
+</blockquote>
+<h3 id="现象：测试环境没问题，生产就出问题了。"><a href="#现象：测试环境没问题，生产就出问题了。" class="headerlink" title="现象：测试环境没问题，生产就出问题了。"></a>现象：测试环境没问题，生产就出问题了。</h3><p>测试环境认真走查过没问题，到了预发布时，耗时跟进一个严重bug，导致时间不足以回归其他用例，所以这个功能没有覆盖，到了线上就出问题。</p>
+<h3 id="本质：为什么同一套代码，两个环境不一致？"><a href="#本质：为什么同一套代码，两个环境不一致？" class="headerlink" title="本质：为什么同一套代码，两个环境不一致？"></a>本质：为什么同一套代码，两个环境不一致？</h3><p>经过日志排查，发现测试环境的日志显示正常，到了预发布环境，少了一些参数，可以推断是由于代码不一致导致的。代码不一致的话，那肯定是修改了代码，研发同学不会偷偷提交无效代码的，要有这个基本信任，拿到版本库日志对比就水落石出了。</p>
+<h3 id="教训是什么？"><a href="#教训是什么？" class="headerlink" title="教训是什么？"></a>教训是什么？</h3><p>测试用例不可能穷举，在有限的时间内完成关键用例的测试，则质量程度在研发、测试认可接受范围内。</p>
+<p>研发测试过程中反复测试一轮是没有问题的，bug修复后，在预发布环境，需要将核心用例都走一遍，这个是保本所需，不能放松，测试同学也有责任，在这个环节是否严格遵守，排除测试组里面的害群之马去认真面对、分析，对测试、研发提出质疑，上线发布环境，不容许半点质量的放松，回归用例的集合是一根救命稻草，要狠狠抓住，如果错过了，更多是测试没有坚持质量原则。</p>
+<p>另外，即将上线发布前的封包时间也很关键，团队究竟认可什么时候封包，封包之后的致命bug修复，如何再次合并代码，这些代码必须经过严格代码审查以及说明影响范围，否则还是很容易陷入修复bug的同时会带来新问题的魔咒。</p>
+<h3 id="再想想"><a href="#再想想" class="headerlink" title="再想想"></a>再想想</h3><p>这锅还是要背，的确在预发布环节，用例回归上掉以轻心了，不可否认。另外，要能够快速定位问题和取证，通过日志、版本信息，回放当时问题所在，让开发、测试同学活的明明白白。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">测试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/测试//" class="article-tag-list-link color3">测试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/01/back-black-pot/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-the-test-post" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -643,113 +737,6 @@
 
 
   
-    <article id="post-Summary-of-exploratory-test-training" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/12/Summary-of-exploratory-test-training/">探索式测试培训总结</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/12/Summary-of-exploratory-test-training/" class="archive-article-date">
-  	<time datetime="2018-04-12T04:44:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://oxniu73od.bkt.clouddn.com/mmexport1521534994332.png" alt=""></p>
-<h3 id="探索式测试介绍"><a href="#探索式测试介绍" class="headerlink" title="探索式测试介绍"></a>探索式测试介绍</h3><h4 id="探索式测试是什么？"><a href="#探索式测试是什么？" class="headerlink" title="探索式测试是什么？"></a>探索式测试是什么？</h4><p>它不是一种具体的软件测试技术，设想你在旅游城市中，如何有目的的漫游，把城市的要点信息都去感受下呢？</p>
-<h4 id="用一页PPT介绍探索式测试"><a href="#用一页PPT介绍探索式测试" class="headerlink" title="用一页PPT介绍探索式测试"></a>用一页PPT介绍探索式测试</h4><p><img src="http://oxniu73od.bkt.clouddn.com/popo_2018-04-12%20%2013-02-28.jpg" alt=""></p>
-<h3 id="探索式测试分类"><a href="#探索式测试分类" class="headerlink" title="探索式测试分类"></a>探索式测试分类</h3><h4 id="局部探索式测试"><a href="#局部探索式测试" class="headerlink" title="局部探索式测试"></a>局部探索式测试</h4><p><img src="http://oxniu73od.bkt.clouddn.com/%E5%B1%80%E9%83%A8%E6%8E%A2%E7%B4%A2.png" alt=""></p>
-<h4 id="全局探索式测试"><a href="#全局探索式测试" class="headerlink" title="全局探索式测试"></a>全局探索式测试</h4><p><img src="http://oxniu73od.bkt.clouddn.com/%E6%BC%AB%E6%B8%B8%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9E%8B%E5%8C%BA%E5%9F%9F%E6%8E%A8%E8%8D%90%E6%B5%8B%E8%AF%95%E6%B3%95.png" alt=""></p>
-<h3 id="课上精彩影集"><a href="#课上精彩影集" class="headerlink" title="课上精彩影集"></a>课上精彩影集</h3><h4 id="课室"><a href="#课室" class="headerlink" title="课室"></a>课室</h4><p><img src="http://oxniu73od.bkt.clouddn.com/IMG_20180324_135129996.jpg" alt=""></p>
-<h4 id="分组演练"><a href="#分组演练" class="headerlink" title="分组演练"></a>分组演练</h4><p><img src="http://oxniu73od.bkt.clouddn.com/IMG_20180324_144755338.jpg" alt=""></p>
-<p><img src="http://oxniu73od.bkt.clouddn.com/IMG_20180324_163809281.jpg" alt=""></p>
-<h4 id="奖品-大保健和春风礼包"><a href="#奖品-大保健和春风礼包" class="headerlink" title="奖品 大保健和春风礼包"></a>奖品 大保健和春风礼包</h4><p><img src="http://oxniu73od.bkt.clouddn.com/IMG_20180324_164041767.jpg" alt=""></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="反馈指标如下"><a href="#反馈指标如下" class="headerlink" title="反馈指标如下"></a>反馈指标如下</h4><p><img src="http://oxniu73od.bkt.clouddn.com/popo_2018-04-12%20%2013-35-12.jpg" alt=""></p>
-<h4 id="学员反馈主要收获："><a href="#学员反馈主要收获：" class="headerlink" title="学员反馈主要收获："></a>学员反馈主要收获：</h4><ol>
-<li>系统学习了测试法，保障测试计划和策略的完整性</li>
-<li>对测试流程工作有一定的启发</li>
-<li>培训了团队合作还有增加默契</li>
-</ol>
-<h4 id="学员反馈主要可优化点："><a href="#学员反馈主要可优化点：" class="headerlink" title="学员反馈主要可优化点："></a>学员反馈主要可优化点：</h4><ol>
-<li>时间有点长，希望可以多一些休息；</li>
-<li>内容有些多，可以挑重要的结合实际案例进行重点讲解；</li>
-<li>在引导同学思考的时候，问题可以提的更具体一些，目前显得有些反馈，不容易回答和互动。</li>
-</ol>
-<blockquote>
-<p> 感谢童鞋们的积极参与，后续课程设计更加有动力，优化再进一步。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">管理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/12/Summary-of-exploratory-test-training/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -847,11 +834,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">旅游</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">管理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅游</a>
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -860,10 +851,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">APM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">测试</a>
               </li>
              
               <li class="article-tag-list-item">

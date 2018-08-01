@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iamlile.github.io">
-  <title>Archives | Lile&#39;s blog</title>
+  <title>测试背黑锅 | Lile&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lile&#39;s blog">
-<meta property="og:url" content="http://iamlile.github.io/archives/page/2/index.html">
+  <meta name="description" content="测试背黑锅朋友讲了个案例  组内有一位成员发现线上缺陷非常高兴，指着其他组员说，你们怎么测试的，这么简单的问题都漏了。（声明这位组员不是leader，即便是也有问题，原则上来说用“你们”已经划清了界线。）然后让这位组员参与排查问题，得到的答复是：我只参与提问，你们去查。  现象：测试环境没问题，生产就出问题了。测试环境认真走查过没问题，到了预发布时，耗时跟进一个严重bug，导致时间不足以回归其他用">
+<meta name="keywords" content="测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="测试背黑锅">
+<meta property="og:url" content="http://iamlile.github.io/2018/08/01/back-black-pot/index.html">
 <meta property="og:site_name" content="Lile&#39;s blog">
+<meta property="og:description" content="测试背黑锅朋友讲了个案例  组内有一位成员发现线上缺陷非常高兴，指着其他组员说，你们怎么测试的，这么简单的问题都漏了。（声明这位组员不是leader，即便是也有问题，原则上来说用“你们”已经划清了界线。）然后让这位组员参与排查问题，得到的答复是：我只参与提问，你们去查。  现象：测试环境没问题，生产就出问题了。测试环境认真走查过没问题，到了预发布时，耗时跟进一个严重bug，导致时间不足以回归其他用">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://oxniu73od.bkt.clouddn.com/%E8%83%8C%E9%BB%91%E9%94%85.jpg">
+<meta property="og:updated_time" content="2018-08-01T13:10:41.760Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lile&#39;s blog">
+<meta name="twitter:title" content="测试背黑锅">
+<meta name="twitter:description" content="测试背黑锅朋友讲了个案例  组内有一位成员发现线上缺陷非常高兴，指着其他组员说，你们怎么测试的，这么简单的问题都漏了。（声明这位组员不是leader，即便是也有问题，原则上来说用“你们”已经划清了界线。）然后让这位组员参与排查问题，得到的答复是：我只参与提问，你们去查。  现象：测试环境没问题，生产就出问题了。测试环境认真走查过没问题，到了预发布时，耗时跟进一个严重bug，导致时间不足以回归其他用">
+<meta name="twitter:image" content="http://oxniu73od.bkt.clouddn.com/%E8%83%8C%E9%BB%91%E9%94%85.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -152,270 +159,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-back-black-pot" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      测试背黑锅
+    </h1>
+  
+
+        
+        <a href="/2018/08/01/back-black-pot/" class="archive-article-date">
+  	<time datetime="2018-08-01T12:47:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="测试背黑锅"><a href="#测试背黑锅" class="headerlink" title="测试背黑锅"></a>测试背黑锅</h3><p><img src="http://oxniu73od.bkt.clouddn.com/%E8%83%8C%E9%BB%91%E9%94%85.jpg" alt=""><br>朋友讲了个案例</p>
+<blockquote>
+<p>组内有一位成员发现线上缺陷非常高兴，指着其他组员说，你们怎么测试的，这么简单的问题都漏了。（声明这位组员不是leader，即便是也有问题，原则上来说用“你们”已经划清了界线。）然后让这位组员参与排查问题，得到的答复是：我只参与提问，你们去查。</p>
+</blockquote>
+<h3 id="现象：测试环境没问题，生产就出问题了。"><a href="#现象：测试环境没问题，生产就出问题了。" class="headerlink" title="现象：测试环境没问题，生产就出问题了。"></a>现象：测试环境没问题，生产就出问题了。</h3><p>测试环境认真走查过没问题，到了预发布时，耗时跟进一个严重bug，导致时间不足以回归其他用例，所以这个功能没有覆盖，到了线上就出问题。</p>
+<h3 id="本质：为什么同一套代码，两个环境不一致？"><a href="#本质：为什么同一套代码，两个环境不一致？" class="headerlink" title="本质：为什么同一套代码，两个环境不一致？"></a>本质：为什么同一套代码，两个环境不一致？</h3><p>经过日志排查，发现测试环境的日志显示正常，到了预发布环境，少了一些参数，可以推断是由于代码不一致导致的。代码不一致的话，那肯定是修改了代码，研发同学不会偷偷提交无效代码的，要有这个基本信任，拿到版本库日志对比就水落石出了。</p>
+<h3 id="教训是什么？"><a href="#教训是什么？" class="headerlink" title="教训是什么？"></a>教训是什么？</h3><p>测试用例不可能穷举，在有限的时间内完成关键用例的测试，则质量程度在研发、测试认可接受范围内。</p>
+<p>研发测试过程中反复测试一轮是没有问题的，bug修复后，在预发布环境，需要将核心用例都走一遍，这个是保本所需，不能放松，测试同学也有责任，在这个环节是否严格遵守，排除测试组里面的害群之马去认真面对、分析，对测试、研发提出质疑，上线发布环境，不容许半点质量的放松，回归用例的集合是一根救命稻草，要狠狠抓住，如果错过了，更多是测试没有坚持质量原则。</p>
+<p>另外，即将上线发布前的封包时间也很关键，团队究竟认可什么时候封包，封包之后的致命bug修复，如何再次合并代码，这些代码必须经过严格代码审查以及说明影响范围，否则还是很容易陷入修复bug的同时会带来新问题的魔咒。</p>
+<h3 id="再想想"><a href="#再想想" class="headerlink" title="再想想"></a>再想想</h3><p>这锅还是要背，的确在预发布环节，用例回归上掉以轻心了，不可否认。另外，要能够快速定位问题和取证，通过日志、版本信息，回放当时问题所在，让开发、测试同学活的明明白白。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/zhifu/zhifubaozhifu.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/zhifu/weixinzhifu.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/12/Summary-of-exploratory-test-training/" class="archive-article-date">
-  	<time datetime="2018-04-12T04:44:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/12/Summary-of-exploratory-test-training/">探索式测试培训总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">管理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">测试</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        			<a href="/categories/测试//" class="article-tag-list-link color3">测试</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/22/The-harvest-of-new-year/" class="archive-article-date">
-  	<time datetime="2018-02-22T04:06:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/14/the-test-post/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">互联网测试姿势</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/22/The-harvest-of-new-year/">一场有意义的新年假期</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">管理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#测试背黑锅"><span class="toc-number">1.</span> <span class="toc-text">测试背黑锅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#现象：测试环境没问题，生产就出问题了。"><span class="toc-number">2.</span> <span class="toc-text">现象：测试环境没问题，生产就出问题了。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本质：为什么同一套代码，两个环境不一致？"><span class="toc-number">3.</span> <span class="toc-text">本质：为什么同一套代码，两个环境不一致？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#教训是什么？"><span class="toc-number">4.</span> <span class="toc-text">教训是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#再想想"><span class="toc-number">5.</span> <span class="toc-text">再想想</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/21/The-salary-is-higher-than-you/" class="archive-article-date">
-  	<time datetime="2018-02-21T11:17:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/21/The-salary-is-higher-than-you/">老板说招个工资比我高的</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">管理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/11/book/" class="archive-article-date">
-  	<time datetime="2018-02-11T00:44:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/11/book/">技术书籍推荐</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">管理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/10/companyneedyourskill/" class="archive-article-date">
-  	<time datetime="2018-01-10T12:43:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/10/companyneedyourskill/">你有什么技能是公司离不开你</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">管理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -439,8 +334,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
